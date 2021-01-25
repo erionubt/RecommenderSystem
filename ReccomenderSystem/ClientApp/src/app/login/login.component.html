@@ -1,0 +1,77 @@
+<div class="img-responsive background-image">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-sm-12">
+        <div class="login-form">
+          <div class="col-sm-6">
+            <form class="form-login" [formGroup]="loginForm">
+              <div class="left-login">
+                <h4 class="text-left same-text">Login</h4>
+                <p class="text-left same-text-two">Welcome back! Please sign in to you account.</p>
+                <p class="invalid-feedback">{{alert}}</p>
+                <div class="form-group">
+                  <label for="username">Email</label>
+                  <input type="text" formControlName="username" class="form-control"  placeholder="Enter email address" />
+                  <!--<div *ngIf="(submitted && f.username.errors) || (f.username.invalid && f.username.touched)" class="invalid-feedback">
+                    <div *ngIf="f.username.errors?.required" class="validimet">Email is required</div>
+                    <div *ngIf="f.username.errors.email" class="validimet">Email must be a valid email address</div>
+                  </div>-->
+                </div>
+                <div class="form-group">
+                  <label for="password">Password</label>
+                  <input type="password" formControlName="password" class="form-control" placeholder="Enter password" />
+                  <<!--div *ngIf="(submitted && f.password.errors) || (f.password.invalid && f.password.touched)" class="invalid-feedback">
+                    <div *ngIf="f.password.errors?.required" class="validimet">Password is required</div>
+                    <div *ngIf="f.password.errors.email" class="validimet">Password must contain at least eight characters, including uppercase, lowercase letters and numbers.</div>
+                  </div>-->
+                </div>
+                <div class="forgot-password">
+                  <p class="text-right"><a [routerLink]='["/forgot-password"]'>Forgot your password?</a></p>
+                </div>
+
+                <input class="check-box" type="checkbox" id="check-box-one" formControlName="remember" />
+                <label for="check-box-one" class="check-box-one">Keep me signed in.</label>
+
+
+                <div class="butoni">
+                  <button class="btn btn-primary" (click)="onSubmit()" [disabled]="loginForm.invalid">Login</button>
+                </div>
+                <div class="line-two"></div>
+                <div id="text-go">
+                  <p class="text-left"><a [routerLink]='["/home"]'>Go Back</a></p>
+                </div>
+
+
+              </div>
+            </form>
+          </div>
+          <!--<hr class="new-line">-->
+          <div class="line-center"></div>
+
+
+          <div class="col-sm-6">
+            <div class="right-create">
+              <h4 class="text-left same-text">Create An Account</h4>
+              <p class="text-left text-justify">
+                Save your time to find the best service by viewing potential garages. Register to book faster from any dervice and access your booking history.
+              </p>
+              <div class="butoni-register">
+                <button class="btn-secondary" [routerLink]='["/register"]'>
+                  Register
+                </button>
+              </div>
+              <div id="text-go1">
+                <p class="text-center"><a [routerLink]='["/home"]'>Go Back</a></p>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+
+    </div>
+  </div>
+</div>
