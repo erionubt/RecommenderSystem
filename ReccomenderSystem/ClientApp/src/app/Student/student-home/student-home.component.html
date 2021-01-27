@@ -1,0 +1,30 @@
+
+<form [formGroup]="searchForm">
+  <div>
+    <input formControlName="search" placeholder="Search by material title or author" />
+    <button type="submit" class="btn btn-sm  btn-primary" (click)="searchMaterials()">Search</button>
+  </div>
+  <div *ngFor="let item of materials" class="col-md-12 diviMadh">
+    <div class="row">
+      <div class="col-md-3">
+        <img src="{{item?.materialPhoto}}" width="90" height="75" />
+      </div>
+      <div class="col-md-3"><p>Title: {{item?.title}}</p></div>
+      <div class="col-md-3">
+        <p>Author: {{item?.author}}</p>
+      </div>
+      <div class="col-md-3">
+        <p>{{item?.topic}}</p>
+        <button *ngIf="item?.price == null" class="btn btn-primary btn-sm">Download</button>
+        <button *ngIf="item?.price != null" class="btn btn-success btn-sm">Buy for {{item?.price}}$</button>
+      </div>
+    </div>
+  </div>
+</form>
+
+<!--<div *ngFor="let item of materials">
+  <h4><img src="{{item?.materialPhoto}}" width="90" height="75" /></h4>
+  <h4>{{item?.title}}</h4>
+  <h4>{{item?.author}}</h4>
+  <h4>{{item?.topic}}</h4>
+</div>-->

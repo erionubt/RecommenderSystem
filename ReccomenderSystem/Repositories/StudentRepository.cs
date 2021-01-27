@@ -1,4 +1,5 @@
-﻿using ReccomenderSystem.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using ReccomenderSystem.Data;
 using ReccomenderSystem.Interfaces;
 using ReccomenderSystem.Models;
 using System;
@@ -20,6 +21,13 @@ namespace LMRS.Repositories
         {
             await _context.Users.AddAsync(student);
             return await _context.SaveChangesAsync() > 0;
+        }
+
+        public List<Materials> GetMaterialsForUser(string id)
+        {
+            var studentTopicId = _context.Users.Where(x => x.Id == id).FirstOrDefault().TopicId;
+
+            return _context.Materials.Where(x => x.TopicId == studentTopicId).ToList();
         }
     }
 }

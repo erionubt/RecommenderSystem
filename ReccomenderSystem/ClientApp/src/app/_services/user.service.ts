@@ -24,4 +24,5 @@ export class UserService {
   SaveTopic(emri: any): Observable<any> {
     return this.http.post<any>(this.baseUrl + 'Topics/SaveTopic/' + emri, this.httpOptions)
   }
+
 }

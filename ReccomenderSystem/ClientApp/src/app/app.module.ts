@@ -16,6 +16,7 @@ import { RegisterComponent } from './register/register.component';
 import { environment } from '../environments/environment';
 import { UserService } from './_services/user.service';
 import { LoginComponent } from './login/login.component';
+import { StudentHomeComponent } from './Student/student-home/student-home.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { LoginComponent } from './login/login.component';
     CounterComponent,
     FetchDataComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    StudentHomeComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -37,9 +39,10 @@ import { LoginComponent } from './login/login.component';
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent, canActivate: [AuthorizeGuard] },
-      { path: 'register', component: RegisterComponent },
+      { path: 'register', component: RegisterComponent,},
       { path: 'login', component: LoginComponent },
-    ])
+      { path: 'student/home', component: StudentHomeComponent },
+    ]),
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthorizeInterceptor, multi: true },

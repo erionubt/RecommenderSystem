@@ -1,10 +1,17 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
+using ReccomenderSystem.DTOs;
+using ReccomenderSystem.Interfaces;
+using ReccomenderSystem.JWTFeatures;
 using ReccomenderSystem.Models;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace ReccomenderSystem.Controllers
@@ -16,20 +23,18 @@ namespace ReccomenderSystem.Controllers
         //private readonly IStudentRepository _studentRepository;
         private readonly SignInManager<ApplicationUser> _signManager;
         private readonly UserManager<ApplicationUser> _userManager;
-        /*private readonly IUserService _userService*/
+        private readonly IUserService _userService;
+        private readonly JwtHandler _jwtHandler;
 
         public UserController(
-            //IStudentRepository studentRepository,
             SignInManager<ApplicationUser> signManager,
-            UserManager<ApplicationUser> userManager
-            //IUserService userService
+            UserManager<ApplicationUser> userManager,
+            IUserService userService
         )
         {
-
-            //_studentRepository = studentRepository;
             _signManager = signManager;
             _userManager = userManager;
-            //_userService = userService;
+            _userService = userService;
         }
 
         [HttpPost("Register/{firstName}/{lastName}/{email}/{interest}/{password}")]
@@ -44,14 +49,7 @@ namespace ReccomenderSystem.Controllers
                     return BadRequest(new { message = "This user already exists. Please use your credentials to log in." });
                 }
 
-                //var user = new ApplicationUser
-                //{
-                //    UserName = email.Trim(),
-                //    Email = email.Trim(),
-                //    Firstname = firstName.Trim(),
-                //    Lastname = lastName.Trim(),
-                //    //Interest = model.Interest
-                //};
+
 
                 var aspNetUser = new ApplicationUser
                 {
@@ -60,9 +58,6 @@ namespace ReccomenderSystem.Controllers
                     Firstname = firstName,
                     Lastname = lastName,
                     TopicId = interest
-                    //Interest = interest
-                    //FirstName = firstName.Trim(),
-                    //Lastname = lastName.Trim(),
                 };
 
                 //Krijo userin e tije
@@ -81,12 +76,6 @@ namespace ReccomenderSystem.Controllers
                     return BadRequest(new { message = "Could not create your user. Please try again." });
                 }
 
-
-                //Ruje konsumatorin
-                //var student = await _studentRepository.AddStudent(aspNetUser);
-
-
-
                 return Ok(aspNetUser);
                 //}
             }
@@ -96,31 +85,33 @@ namespace ReccomenderSystem.Controllers
             }
         }
 
-        //[AllowAnonymous]
-        //[HttpPost("Authenticate")]
-        //public async Task<IActionResult> Authenticate([FromBody] LoginDTO userParam)
-        //{
-        //    //await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
-        //    try
-        //    {
-        //        var user = await _userService.Authenticate(userParam);
+        [AllowAnonymous]
+        [HttpPost("Authenticate")]
+        public async Task<IActionResult> Authenticate([FromBody] LoginDTO userParam)
+        {
+            //await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
+            try
+            {
+                var user = await _userService.Authenticate(userParam);
 
-        //        if (user.Item1 == null)
-        //            return BadRequest(new { message = user.message });
+                if (user.Item1 == null)
+                    return BadRequest(new { message = user.message });
 
-        //        if (user.Item1.isActive == false)
-        //        {
-        //            return BadRequest(new { message = "User is not active" });
-        //        }
+                //if (user.Item1.isActive == false)
+                //{
+                //    return BadRequest(new { message = "User is not active" });
+                //}
 
-        //        return Ok(user.Item1);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return BadRequest(ex.Message);
+                return Ok(user.Item1);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
 
-        //    }
+            }
 
-        //}
+        }
+
+
     }
 }

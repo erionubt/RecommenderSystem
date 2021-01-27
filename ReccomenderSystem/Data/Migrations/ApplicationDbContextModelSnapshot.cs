@@ -339,6 +339,38 @@ namespace ReccomenderSystem.Data.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("ReccomenderSystem.Models.Materials", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("Author")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DatePublished")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MaterialPhoto")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal?>("Price")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("TopicId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TopicId");
+
+                    b.ToTable("Materials");
+                });
+
             modelBuilder.Entity("ReccomenderSystem.Models.Topics", b =>
                 {
                     b.Property<int>("TopicId")
@@ -406,6 +438,17 @@ namespace ReccomenderSystem.Data.Migrations
                 });
 
             modelBuilder.Entity("ReccomenderSystem.Models.ApplicationUser", b =>
+                {
+                    b.HasOne("ReccomenderSystem.Models.Topics", "Topic")
+                        .WithMany()
+                        .HasForeignKey("TopicId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Topic");
+                });
+
+            modelBuilder.Entity("ReccomenderSystem.Models.Materials", b =>
                 {
                     b.HasOne("ReccomenderSystem.Models.Topics", "Topic")
                         .WithMany()

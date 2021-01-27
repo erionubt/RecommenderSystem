@@ -19,5 +19,6 @@ namespace ReccomenderSystem.Data
         }
 
         public DbSet<Topics> Topics { get; set; }
+        public DbSet<Materials> Materials { get; set; }
     }
 }

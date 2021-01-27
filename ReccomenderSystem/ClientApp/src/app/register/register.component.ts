@@ -59,25 +59,11 @@ export class RegisterComponent implements OnInit {
 
 
     try {
-      let value = this.registerForm.value;
-      let data = JSON.stringify(value);
-
-
-      var model = {
-        FirstName: this.registerForm.get('firstName').value,
-        LastName: this.registerForm.get('lastName').value,
-        Email: this.registerForm.get('email').value,
-        Password: this.registerForm.get('password').value,
-        Interest: this.registerForm.get('interest').value,
-        //ConfirmPassword: this.registerForm.get('confirmPassword').value,
-      }
-
-      console.log(model);
       var interesti = Number(this.interest.value);
       console.log(interesti);
       this.userService.register(this.name, this.LastName, this.Email, interesti, this.password).subscribe(result => {
         if (result) {
-          this.router.navigate([`/`]);
+          this.router.navigate([`/login`]);
           this.submitted = false;
         }
       }, error => {

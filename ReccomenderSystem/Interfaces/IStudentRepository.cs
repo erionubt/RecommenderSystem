@@ -9,5 +9,6 @@ namespace ReccomenderSystem.Interfaces
     public interface IStudentRepository
     {
         Task<bool> AddStudent(ApplicationUser student);
+        List<Materials> GetMaterialsForUser(string id);
     }
 }
