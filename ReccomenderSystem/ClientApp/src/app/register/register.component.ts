@@ -30,7 +30,7 @@ export class RegisterComponent implements OnInit {
     this.registerForm = this.formBuilder.group({
       firstName: ['', [Validators.required, Validators.pattern(/^[A-Za-z,.'-]+[A-Za-z .,'-]+$/)]],
       lastName: ['', [Validators.required, Validators.pattern(/^[A-Za-z ,.'-]+$/)]],
-      password: ['', [Validators.required, Validators.pattern(/^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.{8,})/)]],
+      password: ['', [Validators.required, Validators.pattern(/^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.{8,})/), Validators.minLength(8)]],
       //confirmPassword: ['', [Validators.required, Validators.pattern(/^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.{8,})/)]],
       email: ['', [Validators.required, Validators.pattern("^[A-Za-z0-9._+-]+@[a-z]+\.[a-z]{2,4}$")]],
       interest: ['']
@@ -39,13 +39,6 @@ export class RegisterComponent implements OnInit {
       //  validator: MustMatch('password', 'confirmPassword')
       //}
     );
-
-    this.userService.GetTopics().subscribe(result => {
-      this.topics = result;
-      console.log(this.topics);
-    }, error => {
-      console.log(error);
-    });
   }
 
 
@@ -80,7 +73,7 @@ export class RegisterComponent implements OnInit {
   get Email() { return this.registerForm.get('email').value };
   get password() { return this.registerForm.get('password').value };
   get interest() { return this.registerForm.get('interest') };
-  //get confirmPassword() { return this.registerForm.get('confirmPassword').value };
+  get f() { return this.registerForm.controls; }
 }
 
 

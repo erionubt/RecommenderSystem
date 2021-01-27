@@ -17,12 +17,6 @@ export class UserService {
     return this.http.post<any>(this.baseUrl + 'User/Register/' + firstName + '/' + lastName + '/' + email + '/' + interest + '/' + password, this.httpOptions);
   }
 
-  GetTopics(): Observable<any> {
-    return this.http.get<any>(this.baseUrl + 'Topics/GetTopics', this.httpOptions)
-  }
 
-  SaveTopic(emri: any): Observable<any> {
-    return this.http.post<any>(this.baseUrl + 'Topics/SaveTopic/' + emri, this.httpOptions)
-  }
 
 }

@@ -98,12 +98,10 @@ export class LoginComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
-
           this.alert = '';
           if (this.currentUser && this.currentUser.role === Role.Admin)
           {
-            
-            this.router.navigate([this.route.snapshot.queryParams['returnUrl'] || '/']);
+            this.router.navigate([]).then(result => { window.open(`admin/home`, '_self'); });
           }
           else if (this.currentUser && this.currentUser.role == Role.Student) {
             this.router.navigate([]).then(result => { window.open(`student/home`, '_self'); });

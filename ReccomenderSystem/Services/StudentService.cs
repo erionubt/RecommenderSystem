@@ -49,5 +49,25 @@ namespace ReccomenderSystem.Services
             var topic = _context.Topics.Where(x => x.TopicId == id).FirstOrDefault();
             return topic.TopicName;
         }
+
+        public List<StudentDTO> GetStudents()
+        {
+            var result = _studentRepository.GetStudents();
+            List<StudentDTO> listToReturn = new List<StudentDTO>();
+
+            foreach (var item in result)
+            {
+                var student = new StudentDTO();
+                student.FirstName = item.Firstname;
+                student.LastName = item.Lastname;
+                student.Email = item.Email;
+                student.Interesi = GetTopicById(item.TopicId);
+
+                if (!student.Email.StartsWith("admin"))
+                    listToReturn.Add(student);
+            }
+
+            return listToReturn;
+        }
     }
 }

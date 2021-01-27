@@ -1,0 +1,22 @@
+<div class="table-responsive">
+  <table class="table tabela" style="margin-top: 0;">
+    <thead>
+      <tr class="trja">
+        <th class="borderi">First Name</th>
+        <th class="borderi">Last Name</th>
+        <th class="borderi">Email</th>
+        <th class="borderi">Interest</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of users">
+        <td class="data">{{ item.firstName }}</td>
+        <td class="data"> {{item.lastName}}</td>
+        <td class="data">{{item.email}}</td>
+        <td class="data">{{item.interesi}}</td>
+      </tr>    
+    </tbody>
+
+  </table>
+  <p><a  [routerLink]='["/admin/home"]'>Home</a></p>
+</div>

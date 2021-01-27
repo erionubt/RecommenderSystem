@@ -1,0 +1,7 @@
+.addTopic{
+    color: orangered;
+    cursor: pointer;
+}
+  .addTopic:hover {
+    color: orangered;
+  }

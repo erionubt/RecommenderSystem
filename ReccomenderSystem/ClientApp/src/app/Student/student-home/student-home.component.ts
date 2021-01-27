@@ -16,6 +16,7 @@ export class StudentHomeComponent implements OnInit {
   materials: any;
   searchForm: FormGroup;
   searchedMaterials: any;
+  searched: boolean = false;
   constructor(
     private studentService: StudentService,
     private authenticationService: AuthenticationService,
@@ -26,9 +27,21 @@ export class StudentHomeComponent implements OnInit {
 
   searchMaterials() {
     //console.log(this.searchForm.get('search').value);
+    this.searched = true;
     this.studentService.searchMaterial(this.searchForm.get('search').value).subscribe(res => {
       this.searchedMaterials = res;
       this.materials = this.searchedMaterials;
+      console.log(this.materials);
+    }, error => {
+      console.log(error);
+    });
+  }
+
+  clearSearch() {
+    this.searched = false;
+    this.searchForm.get('search').setValue("");
+    this.studentService.getMaterialsForUser(this.currentUser.id).subscribe(result => {
+      this.materials = result;
       console.log(this.materials);
     }, error => {
       console.log(error);

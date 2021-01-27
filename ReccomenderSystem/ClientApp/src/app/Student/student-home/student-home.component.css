@@ -1,4 +1,20 @@
-.diviMadh{
+/*.diviMadh{
     padding-top: 45px;
+}*/
+.rowi {
+  border: 1px solid lightblue;
 }
 
+.logo {
+  padding-top: 21px;
+}
+
+.paragrafi {
+  padding-left: 55px;
+  padding-top: 20px;
+  font-size: large;
+}
+
+.klasa{
+    padding-top: 20px;
+}

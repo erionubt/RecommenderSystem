@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using ReccomenderSystem.DTOs;
 using ReccomenderSystem.Interfaces;
-using ReccomenderSystem.JWTFeatures;
 using ReccomenderSystem.Models;
 using System;
 using System.Collections.Generic;
@@ -24,7 +23,6 @@ namespace ReccomenderSystem.Controllers
         private readonly SignInManager<ApplicationUser> _signManager;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IUserService _userService;
-        private readonly JwtHandler _jwtHandler;
 
         public UserController(
             SignInManager<ApplicationUser> signManager,

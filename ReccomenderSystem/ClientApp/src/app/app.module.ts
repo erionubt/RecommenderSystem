@@ -17,6 +17,9 @@ import { environment } from '../environments/environment';
 import { UserService } from './_services/user.service';
 import { LoginComponent } from './login/login.component';
 import { StudentHomeComponent } from './Student/student-home/student-home.component';
+import { DashboardComponent } from './Admin/dashboard/dashboard.component';
+import { UserListComponent } from './Admin/user-list/user-list.component';
+import { TopicsComponent } from './Admin/topics/topics.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +30,10 @@ import { StudentHomeComponent } from './Student/student-home/student-home.compon
     FetchDataComponent,
     RegisterComponent,
     LoginComponent,
-    StudentHomeComponent
+    StudentHomeComponent,
+    DashboardComponent,
+    UserListComponent,
+    TopicsComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -42,6 +48,9 @@ import { StudentHomeComponent } from './Student/student-home/student-home.compon
       { path: 'register', component: RegisterComponent,},
       { path: 'login', component: LoginComponent },
       { path: 'student/home', component: StudentHomeComponent },
+      { path: 'admin/home', component: DashboardComponent },
+      { path: 'admin/users', component: UserListComponent },
+      { path: 'admin/topics', component: TopicsComponent },
     ]),
   ],
   providers: [

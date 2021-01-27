@@ -1,0 +1,31 @@
+<div class="container-fluid container-fullw bg-white" style="padding:0; margin:0;">
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="panel panel-white no-radius text-center main-panel" [routerLink]='["/admin/users"]' style="cursor: pointer;">
+        <div class="panel-body">
+          <span class="fa-stack fa-2x"> <!--<i class="ti-bookmark-alt"></i>--><i class="fa fas fa-bookmark" style="color: #0077bb !important; margin-left: 6px"></i> </span>
+          <h3 class="StepTitle">Students</h3>
+          <!--<p class="middle-text">Students</p>-->
+          <i class="fc-icon-right-single-arrow"></i>
+          <p class="text-small under-text">
+            <!--<b>Total Bookings: </b>{{bookingNumbers}}-->
+            <a [routerLink]='["/admin/users"]'>List of Students<i _ngcontent-c2="" class="fa fa-angle-right" style="color:#0077bb; margin-left: 6px"></i></a>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6" style="padding-top: 23px;">
+      <div class="panel panel-white no-radius text-center main-panel" [routerLink]='["/admin/topics"]' style="cursor: pointer;">
+        <div class="panel-body">
+          <span class="fa-stack fa-2x"> <i class="fa fas fa-users" style="color: #0077bb !important;"></i> </span>
+          <h3 class="StepTitle">Topics</h3>
+          <!--<p class="middle-text">Add topic</p>-->
+          <p class="text-small under-text">
+            <!--<b>Total Customers: </b>{{customerNumbers}}-->
+            <a [routerLink]='["/admin/topics"]'>List of Topics<i _ngcontent-c2="" class="fa fa-angle-right" style="color:#0077bb; margin-left: 6px;"></i></a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

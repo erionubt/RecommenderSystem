@@ -1,4 +1,5 @@
-﻿using ReccomenderSystem.Models;
+﻿using ReccomenderSystem.DTOs;
+using ReccomenderSystem.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +11,7 @@ namespace ReccomenderSystem.Interfaces
     {
         Task<bool> AddStudent(ApplicationUser student);
         List<Materials> GetMaterialsForUser(string id);
+
+        List<ApplicationUser> GetStudents();
     }
 }

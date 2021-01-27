@@ -10,5 +10,6 @@ namespace ReccomenderSystem.Interfaces
     public interface IStudentService
     {
         List<MaterialDTO> GetMaterialsForUser(string id);
+        List<StudentDTO> GetStudents();
     }
 }

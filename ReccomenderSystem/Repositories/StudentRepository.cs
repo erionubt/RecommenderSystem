@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ReccomenderSystem.Data;
+using ReccomenderSystem.DTOs;
 using ReccomenderSystem.Interfaces;
 using ReccomenderSystem.Models;
 using System;
@@ -28,6 +29,11 @@ namespace LMRS.Repositories
             var studentTopicId = _context.Users.Where(x => x.Id == id).FirstOrDefault().TopicId;
 
             return _context.Materials.Where(x => x.TopicId == studentTopicId).ToList();
+        }
+
+        public List<ApplicationUser> GetStudents()
+        {
+            return _context.Users.ToList();
         }
     }
 }

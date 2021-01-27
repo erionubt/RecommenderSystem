@@ -1,0 +1,24 @@
+<div class="table-responsive">
+  <table class="table tabela" style="margin-top: 0;">
+    <thead>
+      <tr class="trja">
+        <th class="borderi">Identifier</th>
+        <th class="borderi">Title</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of topics">
+        <td class="data">{{ item.topicId }}</td>
+        <td class="data"> {{item.topicName}}</td>
+      </tr>
+    </tbody>
+
+  </table>
+  <p><a [routerLink]='["/admin/home"]'>Home</a></p>
+</div>
+<div style="float: right;">
+  <form [formGroup]="topicForm">
+    <input formControlName="name" />
+    <p style="text-align: right"><a (click)="addTopic()" class="addTopic" placeholder="Topic name">Add Topic</a></p>
+  </form>
+</div>
